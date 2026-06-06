@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ashiq Ali — Robotics & AI Engineer</title>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://ashiqlathief.github.io"/>
+<meta property="og:title" content="Ashiq Ali — Robotics & AI Engineer"/>
+<meta property="og:description" content="Portfolio: safe 3D drone navigation with diffusion models, real-robot manipulation with Kinova Gen3, ROS 2 systems."/>
+<meta property="og:image" content="https://ashiqlathief.github.io/preview.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#ffffff;
+  --bg2:#ffffff;
+  --bg3:#f0f0f4;
+  --ink:#0f0f14;
+  --ink2:#4a4a5a;
+  --ink3:#9898aa;
+  --accent:#4f46e5;
+  --accent2:#059669;
+  --accent-light:#ede9fe;
+  --accent2-light:#d1fae5;
+  --rule:#e4e4eb;
+  --shadow:0 2px 16px rgba(0,0,0,0.07);
+  --shadow-hover:0 6px 32px rgba(0,0,0,0.12);
+  --serif:'Syne',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{background:#ffffff;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── BACKGROUND ICONS ── */
+#bg-icons{
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.bg-icon{
+  position:absolute;
+  object-fit:contain;
+  opacity:0.13;
+  user-select:none;
+}
+body{position:relative;}
+nav,#hero,section,footer,[id]{position:relative;z-index:1;}
+#bg-icons{z-index:0;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-logo{font-family:var(--serif);font-weight:800;font-size:1rem;letter-spacing:.02em;color:var(--ink);text-decoration:none;}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);text-decoration:none;transition:color .2s;font-weight:500;}
+.nav-links a:hover{color:var(--accent)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:8rem 3rem 4rem;position:relative;
+  background:#ffffff;
+}
+.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+.hero-eyebrow{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent2);font-weight:500;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.hero-eyebrow::before{display:none;}
+.hero-name{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,7vw,5.5rem);line-height:1;letter-spacing:-.02em;margin-bottom:1rem;color:var(--ink);}
+.hero-name .dim{color:var(--ink3);font-weight:400}
+.hero-typing-wrap{font-family:var(--serif);font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:600;color:var(--accent);margin-bottom:2rem;min-height:2.2rem;display:flex;align-items:center;}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);animation:blink .9s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-bio{color:var(--ink2);font-size:1rem;font-weight:300;line-height:1.85;max-width:520px;margin-bottom:2.5rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.6rem;border-radius:6px;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:all .2s;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(79,70,229,.3);}
+.btn-primary:hover{background:#4338ca;box-shadow:0 4px 20px rgba(79,70,229,.4);transform:translateY(-1px)}
+.btn-ghost{border:1.5px solid var(--rule);color:var(--ink2);background:transparent;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+/* ── HERO CARD ── */
+.hero-card{
+  background:#fff;border:1px solid var(--rule);border-radius:12px;
+  padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.hc-status{display:flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.5rem;font-weight:600;}
+.hc-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hc-title{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:.4rem;color:var(--ink)}
+.hc-sub{color:var(--ink2);font-size:.82rem;font-weight:300;margin-bottom:1.5rem;line-height:1.5}
+.hc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.hc-tag{font-size:.68rem;padding:.22rem .65rem;border-radius:20px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:.03em;}
+.hc-divider{height:1px;background:var(--rule);margin:1rem 0}
+.hc-stat{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;padding:.3rem 0}
+.hc-stat-label{color:var(--ink3)}
+.hc-stat-val{color:var(--ink);font-weight:500}
+
+/* ── ORBIT ── */
+.orbit-wrap{position:absolute;right:-180px;top:50%;transform:translateY(-50%);width:500px;height:500px;opacity:.06;pointer-events:none;}
+.orbit{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--accent);animation:spin 20s linear infinite;}
+.orbit:nth-child(2){inset:80px;animation-duration:14s;animation-direction:reverse;border-color:var(--accent2)}
+.orbit:nth-child(3){inset:160px;animation-duration:9s;border-style:dashed;border-color:var(--accent)}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* ── SECTIONS ── */
+section{padding:6rem 3rem;max-width:1200px;margin:0 auto}
+.section-header{margin-bottom:3.5rem}
+.section-num{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:.75rem;display:block;}
+.section-title{font-family:var(--serif);font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-.02em;color:var(--ink);}
+.section-title em{font-style:italic;color:var(--ink3);font-weight:400}
+
+/* ── PROJECTS ── */
+.projects-grid{display:flex;flex-direction:column;gap:1.5rem;}
+.project-card{
+  background:#fff;border:1px solid var(--rule);border-radius:12px;
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;box-shadow:var(--shadow);
+  transition:box-shadow .2s,transform .2s;
+  text-decoration:none;color:inherit;
+}
+.project-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.project-card:hover .pc-arrow{transform:translate(4px,-4px);opacity:1}
+.pc-left{padding:2.5rem;border-right:1px solid var(--rule);}
+.pc-index{font-family:var(--serif);font-size:3rem;font-weight:800;color:var(--bg3);line-height:1;margin-bottom:1rem;-webkit-text-stroke:1px var(--rule);}
+.pc-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent2);font-weight:600;margin-bottom:.75rem;}
+.pc-title{font-family:var(--serif);font-size:1.35rem;font-weight:700;margin-bottom:.75rem;line-height:1.2;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;color:var(--ink);}
+.pc-arrow{flex-shrink:0;color:var(--ink3);opacity:.3;transition:transform .2s,opacity .2s;font-size:1.2rem;margin-top:.1rem;}
+.pc-desc{color:var(--ink2);font-size:.88rem;font-weight:300;line-height:1.7}
+.pc-right{padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;background:transparent;}
+.pc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem}
+.pc-tag{font-size:.7rem;padding:.25rem .65rem;border:1px solid var(--rule);border-radius:20px;color:var(--ink2);background:#fff;}
+.pc-media{border-radius:8px;overflow:hidden;background:var(--bg3);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid var(--rule);}
+.pc-media-placeholder{text-align:center;color:var(--ink3);font-size:.8rem;padding:1rem;line-height:1.6;}
+.pc-media video{width:100%;height:100%;object-fit:cover;}
+.pc-highlights{margin-top:1rem}
+.pc-highlight{display:flex;align-items:flex-start;gap:.6rem;font-size:.8rem;color:var(--ink2);padding:.35rem 0;border-bottom:1px solid var(--rule);font-weight:300;}
+.pc-highlight:last-child{border:none}
+.pc-highlight::before{content:'→';color:var(--accent);flex-shrink:0;margin-top:.05rem}
+
+/* ── SKILLS ── */
+#skills-section{background:transparent;max-width:100%;padding:6rem 0}
+.skills-icon-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.25rem;
+}
+.skill-icon-card{
+  background:#fff;border:1px solid var(--rule);border-radius:12px;
+  padding:2rem 1.5rem;text-align:center;
+  box-shadow:var(--shadow);
+  transition:box-shadow .2s,transform .2s;
+  cursor:default;
+}
+.skill-icon-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px)}
+.sic-icon{font-size:2.8rem;margin-bottom:.9rem;line-height:1;display:block;}
+.sic-img{width:56px;height:56px;object-fit:contain;margin:0 auto .9rem;display:block;}
+.sic-title{font-family:var(--serif);font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
+.sic-sub{font-size:.75rem;color:var(--ink3);font-weight:300;line-height:1.4;}
+
+/* ── ABOUT ── */
+.about-text p{color:var(--ink2);font-weight:300;line-height:1.9;margin-bottom:1.2rem;font-size:.97rem;}
+.about-text p strong{color:var(--ink);font-weight:600}
+.available-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent2-light);border:1px solid #6ee7b7;color:var(--accent2);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:20px;font-weight:600;margin-top:.5rem;}
+.info-card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-bottom:1.25rem;box-shadow:var(--shadow);}
+.ic-header{background:#fff;padding:.9rem 1.25rem;font-family:var(--serif);font-size:.85rem;font-weight:700;letter-spacing:.05em;color:var(--ink);border-bottom:1px solid var(--rule);}
+.ic-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.25rem;border-top:1px solid var(--rule);font-size:.82rem;}
+.ic-label{color:var(--ink3);font-weight:300}
+.ic-val{color:var(--ink);font-weight:500;text-align:right}
+
+/* ── CONTACT ── */
+#contact-section{background:transparent;max-width:100%;padding:6rem 0}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-intro{color:var(--ink2);font-weight:300;line-height:1.9;font-size:.97rem;margin-bottom:2rem;}
+.contact-intro strong{color:var(--ink);font-weight:600}
+.contact-links{display:flex;flex-direction:column;gap:.75rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:#fff;border:1px solid var(--rule);border-radius:10px;text-decoration:none;color:var(--ink);transition:all .2s;box-shadow:var(--shadow);}
+.contact-link:hover{border-color:var(--accent);box-shadow:var(--shadow-hover);transform:translateY(-1px)}
+.cl-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--bg2);flex-shrink:0;font-size:1rem;}
+.cl-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:500}
+.cl-val{font-size:.9rem;font-weight:500;color:var(--ink)}
+.cta-box{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:2.5rem;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.cta-box h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-bottom:.75rem;color:var(--ink)}
+.cta-box p{color:var(--ink2);font-weight:300;font-size:.9rem;line-height:1.7;margin-bottom:1.5rem}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--ink3);flex-wrap:wrap;gap:.5rem;background:#fff;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1.5rem}
+  #hero{padding:7rem 1.5rem 4rem}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-card{display:none}
+  section{padding:4rem 1.5rem}
+  .project-card{grid-template-columns:1fr}
+  .pc-left{border-right:none;border-bottom:1px solid var(--rule)}
+  .skills-icon-grid{grid-template-columns:repeat(2,1fr)}
+  .about-photo-layout{grid-template-columns:1fr !important}
+  .contact-layout{grid-template-columns:1fr}
+  .github-layout{grid-template-columns:1fr !important}
+  footer{padding:1.5rem}
+  .orbit-wrap{display:none}
+}
+@media(max-width:480px){
+  .skills-icon-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND ICONS -->
+<div id="bg-icons"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Ashiq<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#github">GitHub</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero" style="padding-left:3rem;padding-right:3rem;max-width:1400px;margin:0 auto;width:100%;display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding-top:8rem;padding-bottom:4rem;">
+  <div class="orbit-wrap">
+    <div class="orbit"></div><div class="orbit"></div><div class="orbit"></div>
+  </div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow reveal">Paderborn, Germany · Open to work</div>
+      <h1 class="hero-name reveal reveal-delay-1">Ashiq Ali<br/><span class="dim">Abdul Lathief</span></h1>
+      <div class="hero-typing-wrap reveal reveal-delay-2">
+        <span id="typed-text"></span><span class="cursor"></span>
+      </div>
+      <p class="hero-bio reveal reveal-delay-2">
+        Master's student at Universität Paderborn building the intersection of
+        generative AI and autonomous systems — safe trajectory generation,
+        visuomotor control, and real robot deployment.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          View work
+        </a>
+        <a href="https://www.linkedin.com/in/ashiq-ali-abdul-lathief-266891191/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="mailto:ashiq.lathief@gmail.com" class="btn btn-ghost">Email me</a>
+      </div>
+    </div>
+    <div class="hero-card reveal reveal-delay-2">
+      <div class="hc-status"><span class="hc-dot"></span>Active thesis project</div>
+      <div class="hc-title">Safe 3D Drone Navigation</div>
+      <div class="hc-sub">Diffusion Predictive Control · NVIDIA Isaac Sim · ViT Encoder</div>
+      <div class="hc-tags">
+        <span class="hc-tag">Diffusion Policy</span>
+        <span class="hc-tag">SLSQP</span>
+        <span class="hc-tag">ViT</span>
+        <span class="hc-tag">U-Net</span>
+        <span class="hc-tag">PyTorch</span>
+      </div>
+      <div class="hc-divider"></div>
+      <div class="hc-stat"><span class="hc-stat-label">University</span><span class="hc-stat-val">Universität Paderborn</span></div>
+      <div class="hc-stat"><span class="hc-stat-label">Focus group</span><span class="hc-stat-val">RAT — Automatic Control</span></div>
+      <div class="hc-stat"><span class="hc-stat-label">Status</span><span class="hc-stat-val" style="color:var(--accent2)">Ongoing · 2024–2025</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01 — Background</span>
+    <h2 class="section-title">About <em>me</em></h2>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:4rem;align-items:start;margin-bottom:3rem" class="about-photo-layout">
+    <div class="about-text reveal">
+      <p>I'm a Master's student in Electrical Systems Engineering at <strong>Universität Paderborn</strong>, working on the boundary between generative AI and physical robotics.</p>
+      <p>My thesis extends <strong>Diffusion Predictive Control with Constraints (DPCC)</strong> to safe 3D drone navigation — combining constraint-aware trajectory generation with visuomotor policies built on Vision Transformers, simulated in NVIDIA Isaac Sim. The diffusion model backbone is built on a <strong>U-Net and Transformer</strong> architecture, enabling expressive multi-modal trajectory distributions for safe autonomous flight.</p>
+      <p>Beyond the thesis, I have hands-on experience with real robotic hardware — I deployed and programmed the <strong>Kinova Gen3 arm</strong> at GET Lab, building manipulation systems with AprilTag-based perception and ROS 2 action server architectures.</p>
+      <p>I'm actively looking for full-time roles in <strong>Germany</strong> in robotics, autonomous systems, or applied AI research — ideally at a company pushing the boundary of what robots can do in the real world.</p>
+      <p>When I'm not working on robots, I enjoy exploring Germany, learning German, and planning my next trip.</p>
+      <div class="available-badge">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block"></span>
+        Available · Late 2025
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-1" style="position:sticky;top:6rem">
+      <div style="border-radius:12px;overflow:hidden;border:1px solid var(--rule);background:var(--bg2);aspect-ratio:3/4;position:relative;box-shadow:var(--shadow);">
+        <img src="photo.jpg" alt="Ashiq Ali Abdul Lathief"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--ink3);font-size:.8rem;text-align:center;padding:1.5rem;gap:.75rem;">
+          <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:.3"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Upload <code style="background:var(--bg3);padding:.1rem .4rem;border-radius:4px;font-size:.75rem">photo.jpg</code><br/>to your repo</span>
+        </div>
+        <div style="position:absolute;bottom:12px;right:12px;background:var(--accent);width:8px;height:8px;border-radius:50%;box-shadow:0 0 10px rgba(79,70,229,.6)"></div>
+      </div>
+      <div style="margin-top:1rem;padding:.75rem 1rem;background:#fff;border:1px solid var(--rule);border-radius:8px;box-shadow:var(--shadow)">
+        <div style="font-family:var(--serif);font-weight:700;font-size:.9rem;color:var(--ink)">Ashiq Ali Abdul Lathief</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.2rem">Robotics & AI Engineer · Paderborn, DE</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem" class="reveal">
+    <div class="info-card">
+      <div class="ic-header">Education</div>
+      <div class="ic-row"><span class="ic-label">Degree</span><span class="ic-val">M.Sc. Electrical Systems Eng.</span></div>
+      <div class="ic-row"><span class="ic-label">University</span><span class="ic-val">Universität Paderborn</span></div>
+      <div class="ic-row"><span class="ic-label">Thesis</span><span class="ic-val">Safe 3D Drone Nav.</span></div>
+      <div class="ic-row"><span class="ic-label">Target defence</span><span class="ic-val">July / August 2025</span></div>
+    </div>
+    <div class="info-card">
+      <div class="ic-header">Personal</div>
+      <div class="ic-row"><span class="ic-label">Location</span><span class="ic-val">Paderborn, Germany</span></div>
+      <div class="ic-row"><span class="ic-label">Open to</span><span class="ic-val">Full-time in Germany</span></div>
+      <div class="ic-row"><span class="ic-label">Interests</span><span class="ic-val">Robotics · AI · Autonomy</span></div>
+      <div class="ic-row"><span class="ic-label">Languages</span><span class="ic-val">English, German (learning)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">02 — Selected work</span>
+    <h2 class="section-title">Projects I've <em>built</em></h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="pc-left">
+        <div class="pc-index">01</div>
+        <div class="pc-label">Master's Thesis · Ongoing</div>
+        <div class="pc-title">Safe 3D Drone Navigation with Diffusion Predictive Control<span class="pc-arrow">↗</span></div>
+        <div class="pc-desc">Extended DPCC from 2D manipulator tasks to full 3D drone navigation in NVIDIA Isaac Sim. Obstacle avoidance enforced at inference time via SLSQP trajectory projection. Visuomotor policy conditioned on first-person Vision Transformer encoder observations. Backbone built on U-Net and Transformer architectures.</div>
+      </div>
+      <div class="pc-right">
+        <div>
+          <div class="pc-tags">
+            <span class="pc-tag">Diffusion Models</span><span class="pc-tag">NVIDIA Isaac Sim</span>
+            <span class="pc-tag">Vision Transformers</span><span class="pc-tag">U-Net</span>
+            <span class="pc-tag">PyTorch</span><span class="pc-tag">SLSQP</span>
+          </div>
+          <div class="pc-media">
+            <div class="pc-media">
+              <!-- <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto .75rem;opacity:.3"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg> -->
+                <video src="demo.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#1a1a1a;display:block;"></video>
+              <!-- <small style="opacity:.5">Replace with &lt;video src="demo.mp4" autoplay loop muted&gt;</small> -->
+            </div>
+          </div>
+        </div>
+        <div class="pc-highlights">
+          <div class="pc-highlight">Compared ViT vs CNN encoders for visuomotor control</div>
+          <div class="pc-highlight">SLSQP projection enforces safety constraints at inference</div>
+          <div class="pc-highlight">RAT Group, Universität Paderborn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="pc-left">
+        <div class="pc-index">02</div>
+        <div class="pc-label">GET Lab · 2023–2024</div>
+        <div class="pc-title">Rescue Robot Object Handling System<span class="pc-arrow">↗</span></div>
+        <div class="pc-desc">Deployed and programmed the Kinova Gen3 robotic arm for real manipulation tasks. Built an AprilTag-based 6-DoF pose estimation pipeline on real hardware with a Qt backend and ROS 2 action server–client architecture. Studied pose-based visual servoing for closed-loop control.</div>
+      </div>
+      <div class="pc-right">
+        <div>
+          <div class="pc-tags">
+            <span class="pc-tag">ROS 2</span><span class="pc-tag">Kinova Gen3</span>
+            <span class="pc-tag">AprilTag</span><span class="pc-tag">PBVS</span>
+            <span class="pc-tag">Qt</span><span class="pc-tag">C++</span>
+          </div>
+            <div class="pc-media">
+            <video src="kinova.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#1a1a1a;display:block;"></video>
+            </div>
+        </div>
+        <div class="pc-highlights">
+          <div class="pc-highlight">AprilTag 6-DoF pose estimation on real hardware</div>
+          <div class="pc-highlight">Pose-based visual servoing (PBVS) for closed-loop control</div>
+          <div class="pc-highlight">GET Lab, Universität Paderborn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div id="skills" style="background:transparent;padding:6rem 0">
+  <div id="skills-section" style="max-width:1200px;margin:0 auto;padding:0 3rem;background:transparent">
+    <div class="section-header reveal">
+      <span class="section-num">02 — Capabilities</span>
+      <h2 class="section-title">Tech <em>stack</em></h2>
+    </div>
+    <div class="skills-icon-grid">
+
+      <div class="skill-icon-card reveal">
+        <img class="sic-img" src="skillsIcon/C_lang.png" alt="C++" onerror="this.style.display='none'"/>
+        <div class="sic-title">Python, C++</div>
+        <div class="sic-sub">Scientific computing, scripting, real-time robotics</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-1">
+        <img class="sic-img" src="skillsIcon/ROS.jpg" alt="ROS" onerror="this.style.display='none'"/>
+        <div class="sic-title">ROS, ROS 2</div>
+        <div class="sic-sub">Action servers, Nav stack, Gazebo, real hardware</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-1">
+        <img class="sic-img" src="skillsIcon/isaacsim.png" alt="Isaac Sim" onerror="this.style.display='none'"/>
+        <div class="sic-title">NVIDIA Isaac Sim</div>
+        <div class="sic-sub">Physics simulation, synthetic data, drone environments</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-2">
+        <img class="sic-img" src="skillsIcon/OpenCV.png" alt="OpenCV" onerror="this.style.display='none'"/>
+        <div class="sic-title">PyTorch, OpenCV</div>
+        <div class="sic-sub">Diffusion policies, ViT, CNN, model training</div>
+      </div>
+
+      <div class="skill-icon-card reveal">
+        <img class="sic-img" src="skillsIcon/CPU.svg" alt="Diffusion Models" onerror="this.style.display='none'"/>
+        <div class="sic-title">Diffusion Models</div>
+        <div class="sic-sub">DPCC, U-Net backbone, Transformer backbone, SLSQP</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-1">
+        <img class="sic-img" src="skillsIcon/code.svg" alt="Code" onerror="this.style.display='none'"/>
+        <div class="sic-title">MATLAB, Simulink</div>
+        <div class="sic-sub">Control systems, simulation, signal processing</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-1">
+        <img class="sic-img" src="skillsIcon/CAD.svg" alt="CAD" onerror="this.style.display='none'"/>
+        <div class="sic-title">SolidWorks, CAD</div>
+        <div class="sic-sub">Mechanical design, robot modelling</div>
+      </div>
+
+      <div class="skill-icon-card reveal reveal-delay-2">
+        <img class="sic-img" src="skillsIcon/airplane.svg" alt="Git" onerror="this.style.display='none'"/>
+        <div class="sic-title">Git, Qt, Linux</div>
+        <div class="sic-sub">Version control, GUI apps, Docker</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- GITHUB -->
+<section id="github" style="background:transparent;padding:6rem 0;max-width:100%">
+  <div style="max-width:1200px;margin:0 auto;padding:0 3rem">
+    <div class="section-header reveal">
+      <span class="section-num">04 — Open Source</span>
+      <h2 class="section-title">GitHub <em>activity</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem" class="github-layout">
+
+      <!-- Profile card -->
+      <div class="reveal" style="background:#fff;border:1px solid var(--rule);border-radius:12px;padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#24292e,#57606a)"></div>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+          <div style="width:48px;height:48px;border-radius:50%;background:#24292e;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink)">ashiqlathief</div>
+            <div style="font-size:.78rem;color:var(--ink3);margin-top:.1rem">github.com/ashiqlathief</div>
+          </div>
+        </div>
+        <p style="color:var(--ink2);font-size:.88rem;font-weight:300;line-height:1.7;margin-bottom:1.5rem">
+          Robotics &amp; AI Engineer building safe autonomous systems. Working on diffusion-based drone navigation and real robot manipulation with ROS 2.
+        </p>
+        <!-- Contribution graph image — GitHub generates this automatically -->
+        <div style="border-radius:6px;overflow:hidden;border:1px solid var(--rule);margin-bottom:1.5rem">
+          <img
+            src="https://ghchart.rshah.org/4f46e5/ashiqlathief"
+            alt="GitHub contribution chart"
+            style="width:100%;display:block;"
+            onerror="this.parentElement.style.display='none'"
+          />
+        </div>
+        <a href="https://github.com/ashiqlathief" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          View GitHub Profile
+        </a>
+      </div>
+
+      <!-- Pinned repos -->
+      <div class="reveal reveal-delay-1" style="display:flex;flex-direction:column;gap:1rem">
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);font-weight:500;margin-bottom:.5rem">Pinned repositories</div>
+
+        <!-- Repo 1 -->
+        <a href="https://github.com/ashiqlathief" target="_blank" style="text-decoration:none;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem 1.5rem;box-shadow:var(--shadow);transition:all .2s;display:block;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--rule)';this.style.transform='none'">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
+            <svg width="14" height="14" fill="none" stroke="var(--ink3)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 9h6"/></svg>
+            <span style="font-family:var(--serif);font-weight:700;font-size:.92rem;color:var(--accent)">safe-drone-navigation</span>
+          </div>
+          <p style="font-size:.8rem;color:var(--ink2);font-weight:300;line-height:1.5;margin-bottom:.75rem">Safe 3D drone navigation using diffusion predictive control with SLSQP constraints and ViT-based visuomotor policy in NVIDIA Isaac Sim.</p>
+          <div style="display:flex;gap:1rem;font-size:.72rem;color:var(--ink3)">
+            <span style="display:flex;align-items:center;gap:.3rem"><span style="width:10px;height:10px;border-radius:50%;background:#3572A5;display:inline-block"></span>Python</span>
+            <span>Master's Thesis</span>
+          </div>
+        </a>
+
+        <!-- Repo 2 -->
+        <a href="https://github.com/ashiqlathief" target="_blank" style="text-decoration:none;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem 1.5rem;box-shadow:var(--shadow);transition:all .2s;display:block;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--rule)';this.style.transform='none'">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
+            <svg width="14" height="14" fill="none" stroke="var(--ink3)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 9h6"/></svg>
+            <span style="font-family:var(--serif);font-weight:700;font-size:.92rem;color:var(--accent)">rescue-robot-manipulation</span>
+          </div>
+          <p style="font-size:.8rem;color:var(--ink2);font-weight:300;line-height:1.5;margin-bottom:.75rem">Kinova Gen3 manipulation system with AprilTag 6-DoF pose estimation, ROS 2 action server architecture, and pose-based visual servoing.</p>
+          <div style="display:flex;gap:1rem;font-size:.72rem;color:var(--ink3)">
+            <span style="display:flex;align-items:center;gap:.3rem"><span style="width:10px;height:10px;border-radius:50%;background:#f34b7d;display:inline-block"></span>C++</span>
+            <span>GET Lab · Paderborn</span>
+          </div>
+        </a>
+
+        <!-- Stats row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.25rem">
+          <div style="background:#fff;border:1px solid var(--rule);border-radius:8px;padding:1rem;text-align:center;box-shadow:var(--shadow)">
+            <div style="font-family:var(--serif);font-weight:800;font-size:1.5rem;color:var(--accent)">2+</div>
+            <div style="font-size:.72rem;color:var(--ink3);margin-top:.2rem;text-transform:uppercase;letter-spacing:.08em">Projects</div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--rule);border-radius:8px;padding:1rem;text-align:center;box-shadow:var(--shadow)">
+            <div style="font-family:var(--serif);font-weight:800;font-size:1.5rem;color:var(--accent2)">Open</div>
+            <div style="font-size:.72rem;color:var(--ink3);margin-top:.2rem;text-transform:uppercase;letter-spacing:.08em">To Work</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact" style="background:transparent;padding:6rem 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 3rem">
+    <div class="section-header reveal">
+      <span class="section-num">05 — Get in touch</span>
+      <h2 class="section-title">Let's <em>connect</em></h2>
+    </div>
+    <div class="contact-layout">
+      <div class="reveal">
+        <p class="contact-intro">I'm looking for <strong>robotics and AI engineering roles</strong> in Germany — autonomous systems, robot learning, applied AI research. If your team is building things that move in the real world, I'd love to talk.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:ashiq.lathief@gmail.com">
+            <div class="cl-icon">✉</div>
+            <div><div class="cl-label">Email</div><div class="cl-val">ashiq.lathief@gmail.com</div></div>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/ashiq-ali-abdul-lathief-266891191/" target="_blank">
+            <div class="cl-icon" style="font-size:.85rem;font-weight:700;color:#0077b5">in</div>
+            <div><div class="cl-label">LinkedIn</div><div class="cl-val">ashiq-ali-abdul-lathief</div></div>
+          </a>
+          <a class="contact-link" href="https://github.com/ashiqlathief" target="_blank">
+            <div class="cl-icon">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            </div>
+            <div><div class="cl-label">GitHub</div><div class="cl-val">github.com/ashiqlathief</div></div>
+          </a>
+        </div>
+      </div>
+      <div class="cta-box reveal reveal-delay-1">
+        <h3>Open to opportunities</h3>
+        <p>M.Sc. graduating mid-2025. Looking for roles in robotics engineering, autonomous systems, or applied AI — particularly at companies working on real hardware.</p>
+        <a href="mailto:ashiq.lathief@gmail.com" class="btn btn-primary">Send me a message →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Ashiq Ali Abdul Lathief · Paderborn, Germany</span>
+  <span>Robotics & AI Engineer</span>
+</footer>
+
+<script>
+// ── BACKGROUND ICONS ──
+(function(){
+  const iconFiles = [
+    'aerial.svg','aerial-imaging.svg','ai.svg','ai-research.svg','ai-sophia.svg',
+    'arm.svg','arms.svg','artificial-intelligence.svg','computer.svg','dummy.svg',
+    'hand1.svg','hand2.svg','hand3.svg','industry.svg','pet.svg','pet-robot.svg',
+    'robot.svg','robot2.svg','robot3.svg','robot4.png','robot5.png','robot6.svg',
+    'robot-alien.svg','robot-assistant.png','rover1.svg','rover2.svg'
+  ];
+
+  function generateIcons(){
+    const container = document.getElementById('bg-icons');
+    if(!container) return;
+    container.innerHTML = '';
+    container.style.height = '0px'; // reset first so it doesn't inflate scrollHeight
+
+    if(window.innerWidth <= 480) return;
+
+    const W = window.innerWidth;
+    // Use offsetHeight of actual content sections to avoid infinite growth
+    const H = document.body.offsetHeight;
+    container.style.height = H + 'px';
+
+    const colSpacing = window.innerWidth <= 768 ? 160 : 240;
+    const rowSpacing = 200;
+    const numCols = Math.ceil(W / colSpacing) + 1;
+    const numRows = Math.ceil(H / rowSpacing) + 1;
+
+    for(let r = 0; r < numRows; r++){
+      for(let c = 0; c < numCols; c++){
+        const img = document.createElement('img');
+        const file = iconFiles[Math.floor(Math.random() * iconFiles.length)];
+        img.src = 'backgroundIcons/' + file;
+        img.className = 'bg-icon';
+        img.alt = '';
+        img.draggable = false;
+
+        const jitterX = (Math.random() - 0.5) * colSpacing * 0.7;
+        const jitterY = (Math.random() - 0.5) * rowSpacing * 0.7;
+        const x = c * colSpacing + jitterX;
+        const y = r * rowSpacing + jitterY;
+        const rot = Math.random() * 360;
+        const size = 60 + Math.floor(Math.random() * 36); // 60–96px
+        const opacity = 0.09 + Math.random() * 0.1; // 0.09–0.19
+
+        img.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px;transform:rotate(${rot}deg);opacity:${opacity};`;
+        container.appendChild(img);
+      }
+    }
+  }
+
+  function init(){
+    generateIcons();
+    // Regenerate after images/fonts load to get accurate scrollHeight
+    window.addEventListener('load', generateIcons);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(generateIcons, 400);
+  });
+})();
+
+
+let pi=0,ci=0,deleting=false;
+const phrases=['Robotics Engineer','AI Researcher','Diffusion Policy Dev','ROS 2 Engineer','Drone Navigation'];
+const el=document.getElementById('typed-text');
+function type(){
+  const phrase=phrases[pi];
+  if(!deleting){
+    el.textContent=phrase.slice(0,++ci);
+    if(ci===phrase.length){deleting=true;setTimeout(type,1800);return;}
+  }else{
+    el.textContent=phrase.slice(0,--ci);
+    if(ci===0){deleting=false;pi=(pi+1)%phrases.length;setTimeout(type,400);return;}
+  }
+  setTimeout(type,deleting?45:80);
+}
+setTimeout(type,600);
+
+const observer=new IntersectionObserver(
+  entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),
+  {threshold:0.1}
+);
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+window.addEventListener('load',()=>{
+  document.querySelectorAll('#hero .reveal').forEach(el=>el.classList.add('visible'));
+});
+</script>
+</body>
+</html>

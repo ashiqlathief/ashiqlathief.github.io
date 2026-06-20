@@ -77,7 +77,7 @@ nav{
   padding:8rem 3rem 4rem;position:relative;
   background:#ffffff;
 }
-.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
 .hero-eyebrow{
   font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--accent2);font-weight:500;margin-bottom:1.5rem;
@@ -100,9 +100,9 @@ nav{
 /* ── HERO CARD ── */
 .hero-card{
   background:#fff;border:1px solid var(--rule);border-radius:12px;
-  padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  padding:2rem;box-shadow:var(--shadow);position:relative;
 }
-.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0;background:linear-gradient(90deg,var(--accent),var(--accent2));}
 .hc-status{display:flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.5rem;font-weight:600;}
 .hc-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
@@ -213,13 +213,35 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 
+/* ── JOURNEY (now / next) ── */
+.journey-wrap{max-width:100%;margin:0 auto;text-align:center}
+.journey-stage-wrap{position:relative;margin:0 -2rem .9rem -2rem;}
+.journey-stage{position:relative;overflow:hidden;aspect-ratio:360/204;background:var(--bg3);border-radius:14px;}
+.journey-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.32);transform-origin:center;}
+.journey-label{position:absolute;bottom:.6rem;font-size:.95rem;font-family:var(--serif);letter-spacing:.02em;text-transform:none;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.65);pointer-events:none;transition:color .3s,text-shadow .3s;}
+.journey-label--l{left:.8rem}
+.journey-label--r{right:.8rem}
+.journey-wrap.is-now-active .journey-label--l,
+.journey-wrap.is-next-active .journey-label--r{color:#ffd84d;text-shadow:0 1px 10px rgba(255,216,77,.7);}
+.journey-hotspot{position:absolute;top:0;bottom:0;width:42%;background:none;border:none;cursor:pointer;padding:0;}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.journey-hotspot--l{left:0}
+.journey-hotspot--r{right:0}
+.journey-hint{font-size:.66rem;color:var(--ink3);letter-spacing:.05em;margin-bottom:.5rem}
+.journey-card{position:absolute;width:230px;max-width:80%;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;padding:.9rem 1.05rem;background:#fff;border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow);text-align:left;z-index:5;}
+.journey-card--now{left:0;top:calc(100% + 10px);transform:translateY(-8px);}
+.journey-card--next{right:0;bottom:calc(100% + 10px);transform:translateY(8px);}
+.journey-card.is-active{opacity:1;transform:translateY(0);pointer-events:auto}
+.journey-card-kicker{font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:.35rem}
+.journey-card--now .journey-card-kicker{color:var(--accent)}
+.journey-card p:last-child{color:var(--ink2);font-size:.78rem;line-height:1.5;font-weight:300}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}
   .nav-links{gap:1.5rem}
   #hero{padding:7rem 1.5rem 4rem}
   .hero-grid{grid-template-columns:1fr;gap:2.5rem}
-  .hero-card{display:none}
   section{padding:4rem 1.5rem}
   .project-card{grid-template-columns:1fr}
   .pc-left{border-right:none;border-bottom:1px solid var(--rule)}
@@ -265,9 +287,10 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
         <span id="typed-text"></span><span class="cursor"></span>
       </div>
       <p class="hero-bio reveal reveal-delay-2">
-        Master's student at Universität Paderborn building the intersection of
-        generative AI and autonomous systems, safe trajectory generation,
-        visuomotor control, and real robot deployment.
+        I'm a Master's student in Paderborn, mostly trying to get robots to move
+        safely without crashing into things. Right now I'm deep in a thesis
+        combining diffusion models with drone navigation and still figuring a lot of it out. These are the things
+        I've built so far.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
         <a href="#projects" class="btn btn-primary">
@@ -278,42 +301,50 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
         <a href="mailto:ashiq.lathief@gmail.com" class="btn btn-ghost">Email me</a>
       </div>
     </div>
-    <div class="hero-card reveal reveal-delay-2">
-      <div class="hc-status"><span class="hc-dot"></span>Active thesis project</div>
-      <div class="hc-title">Safe 3D Drone Navigation</div>
-      <div class="hc-sub">Diffusion Predictive Control · NVIDIA Isaac Sim · ViT Encoder · U-Net · Transformer · CNN</div>
-      <div class="hc-tags">
-        <span class="hc-tag">Diffusion Policy</span>
-        <span class="hc-tag">SLSQP</span>
-        <span class="hc-tag">ViT</span>
-        <span class="hc-tag">U-Net</span>
-        <span class="hc-tag">PyTorch</span>
-      </div>
-      <div class="hc-divider"></div>
-      <div class="hc-stat"><span class="hc-stat-label">University</span><span class="hc-stat-val">Universität Paderborn</span></div>
-      <div class="hc-stat"><span class="hc-stat-label">Focus group</span><span class="hc-stat-val">RAT Automatic Control</span></div>
-      <div class="hc-stat"><span class="hc-stat-label">Status</span><span class="hc-stat-val" style="color:var(--accent2)">Ongoing · 2026</span></div>
+    <div>
+      <!-- <div class="hc-status">Now → Next</div> -->
+      <div class="journey-wrap">
+        <div class="journey-stage-wrap">
+          <div class="journey-card journey-card--now" id="journey-now">
+            <p class="journey-card-kicker">Where I am</p>
+            <p>Finishing my Master's thesis at Universität Paderborn on safe 3D drone navigation, combining diffusion predictive control with visuomotor policies tested in Isaac Sim.</p>
+          </div>
+          <div class="journey-card journey-card--next" id="journey-next">
+            <p class="journey-card-kicker">Where I'm headed</p>
+            <p>A robotics team in Germany that ships to real hardware, not just simulation but also building things people actually use.</p>
+          </div>
+          <div class="journey-stage" role="img" aria-label="Where I am, and where I want to reach: two hands extending toward each other.">
+            <video class="journey-video" muted playsinline preload="auto" poster="media/creation-of-adam-poster.jpg" aria-hidden="true">
+              <source src="media/creation-of-adam-720-v2.mp4" type="video/mp4">
+            </video>
+            <p class="journey-label journey-label--l" aria-hidden="true">Where I am</p>
+            <p class="journey-label journey-label--r" aria-hidden="true">Where I'm headed</p>
+            <button class="journey-hotspot journey-hotspot--l" type="button" aria-describedby="journey-now"><span class="visually-hidden">Where I am, show bio</span></button>
+            <button class="journey-hotspot journey-hotspot--r" type="button" aria-describedby="journey-next"><span class="visually-hidden">Where I'm headed, show goals</span></button>
+          </div>
+        </div>
+        <p class="journey-hint">Hover or tap a side →</p>
+      <!-- </div> -->
     </div>
   </div>
 </div>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">01. Background</span>
-    <h2 class="section-title">About <em>me</em></h2>
-  </div>
-
   <div style="display:grid;grid-template-columns:1fr 320px;gap:4rem;align-items:start;margin-bottom:3rem" class="about-photo-layout">
-    <div class="about-text reveal">
-      <p>I'm a Master's student in Electrical Systems Engineering at <strong>Universität Paderborn</strong>, working on the boundary between generative AI and physical robotics.</p>
-      <p>My thesis extends <strong>Diffusion Predictive Control with Constraints (DPCC)</strong> to drone navigation combining with visuomotor policies built on Vision Transformers, simulated in NVIDIA Isaac Sim. The diffusion model backbone is built on a <strong>U-Net and Transformer</strong> architecture, enabling expressive multi-modal trajectory distributions for safe autonomous flight.</p>
-      <p>Beyond the thesis, I have hands-on experience with real robotic hardware. I deployed and programmed the <strong>Kinova Gen3 arm</strong> at GET Lab, building manipulation systems with AprilTag-based perception and ROS 2 action server architectures.</p>
-      <p>I'm actively looking for full-time roles in <strong>Germany</strong> in robotics, autonomous systems, or applied AI research, ideally at a company pushing the boundary of what robots can do in the real world.</p>
-      <p>When I'm not working on robots, I enjoy exploring Germany, learning German (towards B2), and planning my next trip.</p>
-      <div class="available-badge">
-        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block"></span>
-        Available · Late 2026
+    <div>
+      <div class="section-header reveal">
+        <span class="section-num">01. Background</span>
+        <h2 class="section-title">About <em>me</em></h2>
+      </div>
+      <div class="about-text reveal">
+        <p>I'm the first in my family to work in engineering, nobody around me had a roadmap for this, so I mostly figured it out by getting curious about whatever came next. Some of it came from coursework, but just as much came from side projects that took on a life of their own and from building things to see what broke. I've always believed engineers should be part of the solution, not part of the problem that's still the filter I run every project through. I don't think of myself as an expert. I just keep starting things, and a few of them have worked out well enough to end up here.</p>
+        <p>I'm actively looking for full-time roles in <strong>Germany</strong> in robotics, autonomous systems, or applied AI research, ideally at a company pushing the boundary of what robots can do in the real world.</p>
+        <p>When I'm not working on robots, I enjoy exploring Germany, learning German (towards B2), and planning my next trip.</p>
+        <div class="available-badge">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block"></span>
+          Available · Late 2026
+        </div>
       </div>
     </div>
 
@@ -336,7 +367,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
       <div class="ic-header">Education</div>
       <div class="ic-row"><span class="ic-label">Degree</span><span class="ic-val">M.Sc. Electrical Systems Eng.</span></div>
       <div class="ic-row"><span class="ic-label">University</span><span class="ic-val">Universität Paderborn</span></div>
-      <div class="ic-row"><span class="ic-label">Thesis</span><span class="ic-val">Safe 3D Drone Navigation using generative AI</span></div>
+      <div class="ic-row"><span class="ic-label">Thesis</span><span class="ic-val">Safe 3D Drone Navigation using Generative AI</span></div>
       <div class="ic-row"><span class="ic-label">Target defence</span><span class="ic-val">July / August 2026</span></div>
     </div>
     <div class="info-card">
@@ -360,7 +391,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
       <div class="pc-left">
         <div class="pc-index">01</div>
         <div class="pc-label">Master's Thesis · Ongoing</div>
-        <div class="pc-title">Safe 3D Drone Navigation with Diffusion Predictive Control<span class="pc-arrow">↗</span></div>
+        <div class="pc-title">Safe 3D Drone Navigation with Generative AI<span class="pc-arrow">↗</span></div>
         <div class="pc-desc">Extended DPCC from 2D manipulator tasks to full 3D drone navigation in NVIDIA Isaac Sim. Obstacle avoidance enforced at inference time via SLSQP trajectory projection. Visuomotor policy conditioned on first-person Vision Transformer encoder observations. Backbone built on U-Net and Transformer architectures.</div>
       </div>
       <div class="pc-right">
@@ -521,7 +552,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
         <a href="https://github.com/ashiqlathief" target="_blank" style="text-decoration:none;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem 1.5rem;box-shadow:var(--shadow);transition:all .2s;display:block;" onmouseover="this.style.borderColor='var(--accent)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--rule)';this.style.transform='none'">
           <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
             <svg width="14" height="14" fill="none" stroke="var(--ink3)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 9h6"/></svg>
-            <span style="font-family:var(--serif);font-weight:700;font-size:.92rem;color:var(--accent)">safe-drone-navigation</span>
+            <span style="font-family:var(--serif);font-weight:700;font-size:.92rem;color:var(--accent)">safe-drone-navigation-generative-AI</span>
           </div>
           <p style="font-size:.8rem;color:var(--ink2);font-weight:300;line-height:1.5;margin-bottom:.75rem">Safe 3D drone navigation using diffusion predictive control with SLSQP constraints and ViT-based visuomotor policy in NVIDIA Isaac Sim.</p>
           <div style="display:flex;gap:1rem;font-size:.72rem;color:var(--ink3)">
@@ -589,7 +620,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
       </div>
       <div class="cta-box reveal reveal-delay-1">
         <h3>Open to opportunities</h3>
-        <p>M.Sc. graduating mid-2025. Looking for roles in robotics engineering, autonomous systems, or applied AI, particularly at companies working on real hardware.</p>
+        <p>M.Sc. graduating mid-2026. Looking for roles in robotics engineering, autonomous systems, or applied AI, particularly at companies working on real hardware.</p>
         <a href="mailto:ashiq.lathief@gmail.com" class="btn btn-primary">Send me a message →</a>
       </div>
     </div>
@@ -688,6 +719,53 @@ function type(){
   setTimeout(type,deleting?45:80);
 }
 setTimeout(type,600);
+
+// ── JOURNEY (now / next) ──
+(function(){
+  const wrap=document.querySelector('.journey-wrap');
+  if(!wrap) return;
+  const stage=wrap.querySelector('.journey-stage-wrap');
+  const video=wrap.querySelector('.journey-video');
+  const hotspots=wrap.querySelectorAll('.journey-hotspot');
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let state=null, rafId=null, animFrom=0, animTo=0, animStart=0;
+  const DUR=2200;
+
+  function metaReady(){ return video.readyState>=1 && !isNaN(video.duration) && video.duration>0; }
+  function targetFor(which){ return which==='next' ? Math.max(video.duration-0.08,0) : 0; }
+
+  function step(now){
+    const t=Math.min((now-animStart)/DUR,1);
+    const eased=1-Math.pow(1-t,3);
+    if(!video.seeking) video.currentTime=animFrom+(animTo-animFrom)*eased;
+    if(t<1) rafId=requestAnimationFrame(step);
+    else rafId=null;
+  }
+  function animateTo(t){
+    if(reduceMotion){ video.currentTime=t; return; }
+    cancelAnimationFrame(rafId);
+    animFrom=video.currentTime||0;
+    animTo=t;
+    animStart=performance.now();
+    rafId=requestAnimationFrame(step);
+  }
+  function applyState(){ if(metaReady()) animateTo(targetFor(state)); }
+  function setJourney(which){
+    state=which;
+    wrap.classList.toggle('is-next-active',which==='next');
+    wrap.classList.toggle('is-now-active',which==='now');
+    document.getElementById('journey-now').classList.toggle('is-active',which==='now');
+    document.getElementById('journey-next').classList.toggle('is-active',which==='next');
+    applyState();
+  }
+  video.addEventListener('loadedmetadata',applyState);
+  if(video.readyState<1) video.load();
+  hotspots.forEach(btn=>{
+    const which=btn.classList.contains('journey-hotspot--l')?'now':'next';
+    ['mouseenter','focus','click'].forEach(evt=>btn.addEventListener(evt,()=>setJourney(which)));
+  });
+  stage.addEventListener('mouseleave',()=>setJourney(null));
+})();
 
 const observer=new IntersectionObserver(
   entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),

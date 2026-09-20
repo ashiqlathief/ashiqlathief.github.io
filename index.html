@@ -343,7 +343,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
         <p>When I'm not working on robots, I enjoy exploring Germany, learning German (towards B2), and planning my next trip.</p>
         <div class="available-badge">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block"></span>
-          Available · Late 2026
+          Available for full-time work in Germany
         </div>
       </div>
     </div>
@@ -368,7 +368,6 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
       <div class="ic-row"><span class="ic-label">Degree</span><span class="ic-val">M.Sc. Electrical Systems Eng.</span></div>
       <div class="ic-row"><span class="ic-label">University</span><span class="ic-val">Universität Paderborn</span></div>
       <div class="ic-row"><span class="ic-label">Thesis</span><span class="ic-val">Safe 3D Drone Navigation using Generative AI</span></div>
-      <div class="ic-row"><span class="ic-label">Target defence</span><span class="ic-val">July / August 2026</span></div>
     </div>
     <div class="info-card">
       <div class="ic-header">Personal</div>
@@ -390,9 +389,9 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
     <div class="project-card reveal">
       <div class="pc-left">
         <div class="pc-index">01</div>
-        <div class="pc-label">Master's Thesis · Ongoing</div>
+        <div class="pc-label">Master's Thesis</div>
         <div class="pc-title">Safe 3D Drone Navigation with Generative AI<span class="pc-arrow">↗</span></div>
-        <div class="pc-desc">Extended DPCC from 2D manipulator tasks to full 3D drone navigation in NVIDIA Isaac Sim. Obstacle avoidance enforced at inference time via SLSQP trajectory projection. Visuomotor policy conditioned on first-person Vision Transformer encoder observations. Backbone built on U-Net and Transformer architectures.</div>
+        <div class="pc-desc">Extended DPCC from 2D manipulator tasks to full 3D drone navigation in NVIDIA Isaac Sim. Obstacle avoidance enforced at inference time via SLSQP trajectory projection, using obstacle positions from either ground truth or a depth-camera-based detector. Visuomotor policy conditioned on first-person Vision Transformer encoder observations. Backbone built on U-Net and Transformer architectures.</div>
       </div>
       <div class="pc-right">
         <div>
@@ -402,17 +401,13 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
             <span class="pc-tag">PyTorch</span><span class="pc-tag">SLSQP</span>
           </div>
           <div class="pc-media">
-            <div class="pc-media">
-              <!-- <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="display:block;margin:0 auto .75rem;opacity:.3"><path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg> -->
-                <video src="media/demo.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#1a1a1a;display:block;"></video>
-              <!-- <small style="opacity:.5">Replace with &lt;video src="demo.mp4" autoplay loop muted&gt;</small> -->
-            </div>
+            <video src="media/demo.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:contain;background:#1a1a1a;display:block;"></video>
           </div>
         </div>
         <div class="pc-highlights">
-          <div class="pc-highlight">Compared ViT vs CNN encoders for visuomotor control</div>
+          <div class="pc-highlight">Compared U-Net and Transformer backbones for visuomotor control</div>
           <div class="pc-highlight">SLSQP projection enforces safety constraints at inference</div>
-          <div class="pc-highlight">RAT Group, Universität Paderborn</div>
+          <div class="pc-highlight">Depth-based obstacle detector (U-disparity map + contour) feeds real-time obstacle estimates into the SLSQP projector, validated on RealSense hardware over ROS2</div>
         </div>
       </div>
     </div>
@@ -620,7 +615,7 @@ footer{border-top:1px solid var(--rule);padding:1.5rem 3rem;display:flex;justify
       </div>
       <div class="cta-box reveal reveal-delay-1">
         <h3>Open to opportunities</h3>
-        <p>M.Sc. graduating mid-2026. Looking for roles in robotics engineering, autonomous systems, or applied AI, particularly at companies working on real hardware.</p>
+        <p>Looking for roles in robotics engineering, autonomous systems, or applied AI, particularly at companies working on real hardware.</p>
         <a href="mailto:ashiq.lathief@gmail.com" class="btn btn-primary">Send me a message →</a>
       </div>
     </div>

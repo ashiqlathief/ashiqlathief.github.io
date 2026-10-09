@@ -1,0 +1,23 @@
+{
+  "name": "ashiqlathief-portfolio",
+  "private": true,
+  "description": "Personal portfolio of Ashiq Ali Abdul Lathief",
+  "version": "1.0.0",
+  "author": "Ashiq Ali Abdul Lathief <ashiq.lathief@gmail.com>",
+  "dependencies": {
+    "gatsby": "^5.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop --host=0.0.0.0",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  }
+}

@@ -40,7 +40,12 @@ const BackgroundIcons = () => {
       container.innerHTML = ""
       container.style.height = "0px" // reset first so it doesn't inflate scrollHeight
 
-      if (window.innerWidth <= 480) return
+      if (window.innerWidth <= 600) return
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      )
+        return
 
       const W = window.innerWidth
       const H = document.body.offsetHeight
@@ -59,6 +64,8 @@ const BackgroundIcons = () => {
           img.className = "bg-icon"
           img.alt = ""
           img.draggable = false
+          img.loading = "lazy"
+          img.decoding = "async"
 
           const jitterX = (Math.random() - 0.5) * colSpacing * 0.7
           const jitterY = (Math.random() - 0.5) * rowSpacing * 0.7
@@ -92,7 +99,7 @@ const BackgroundIcons = () => {
     }
   }, [])
 
-  return <div id="bg-icons" ref={ref}></div>
+  return <div id="bg-icons" ref={ref} aria-hidden="true"></div>
 }
 
 export default BackgroundIcons

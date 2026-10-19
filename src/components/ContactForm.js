@@ -59,12 +59,19 @@ const ContactForm = () => {
           onChange={onChange}
           required
           autoComplete="name"
+          autoCapitalize="words"
+          enterKeyHint="next"
         />
       </label>
       <label className="cf-field">
         <span className="cf-label">Email address</span>
         <input
           type="email"
+          inputMode="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck="false"
+          enterKeyHint="next"
           name="email"
           placeholder="alex@example.com"
           value={values.email}
@@ -77,7 +84,9 @@ const ContactForm = () => {
         <span className="cf-label">Message</span>
         <textarea
           name="message"
-          rows="3"
+          rows="4"
+          autoComplete="off"
+          enterKeyHint="send"
           placeholder="Briefly describe the role, project or idea..."
           value={values.message}
           onChange={onChange}

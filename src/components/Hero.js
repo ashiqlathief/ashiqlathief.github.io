@@ -8,22 +8,7 @@ import Journey from "./Journey"
 // section after the hero rendered *inside* it. `children` preserves that
 // exact DOM (and therefore identical layout and reveal behaviour).
 const Hero = ({ children }) => (
-  <div
-    id="hero"
-    style={{
-      paddingLeft: "3rem",
-      paddingRight: "3rem",
-      maxWidth: "1400px",
-      margin: "0 auto",
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      minHeight: "100vh",
-      paddingTop: "8rem",
-      paddingBottom: "4rem",
-    }}
-  >
+  <div id="hero">
     <div className="orbit-wrap">
       <div className="orbit"></div>
       <div className="orbit"></div>
@@ -67,6 +52,9 @@ const Hero = ({ children }) => (
           </a>
           <a href={`mailto:${data.email}`} className="btn btn-ghost">
             Email me
+          </a>
+          <a href={data.cv.file} download className="btn btn-ghost hero-cv">
+            {data.cv.label}
           </a>
         </div>
       </div>

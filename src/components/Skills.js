@@ -2,16 +2,8 @@ import React from "react"
 import data from "../data"
 
 const Skills = () => (
-  <div id="skills" style={{ background: "transparent", padding: "6rem 0" }}>
-    <div
-      id="skills-section"
-      style={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-        padding: "0 3rem",
-        background: "transparent",
-      }}
-    >
+  <div id="skills" className="skills-outer">
+    <div id="skills-section" className="skills-inner">
       <div className="section-header reveal">
         <span className="section-num">03. Capabilities</span>
         <h2 className="section-title">
@@ -26,6 +18,8 @@ const Skills = () => (
           >
             <img
               className="sic-img"
+              loading="lazy"
+              decoding="async"
               src={s.icon}
               alt={s.alt}
               onError={e => (e.currentTarget.style.display = "none")}

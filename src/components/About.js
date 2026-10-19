@@ -45,7 +45,7 @@ const About = () => {
         </div>
 
         <div
-          className="reveal reveal-delay-1"
+          className="reveal reveal-delay-1 about-photo-col"
           style={{ position: "sticky", top: "6rem" }}
         >
           <div
@@ -125,7 +125,7 @@ const About = () => {
           gridTemplateColumns: "1fr 1fr",
           gap: "1.25rem",
         }}
-        className="reveal"
+        className="reveal about-cards"
       >
         {about.cards.map(card => (
           <div className="info-card" key={card.header}>

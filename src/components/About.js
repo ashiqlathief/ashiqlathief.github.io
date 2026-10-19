@@ -1,49 +1,86 @@
-import React from "react"
+import React, { useRef } from "react"
+import { motion, useScroll, useSpring, useTransform } from "motion/react"
 import data from "../data"
 import Parts from "./Parts"
 
+const { now, next } = data.hero.journey
+const timeline = [
+  [
+    "2023–24",
+    "GET Lab, Universität Paderborn",
+    "Rescue robot object handling on a Kinova Gen3: AprilTag pose estimation, PBVS, ROS 2.",
+  ],
+  [
+    "Thesis",
+    "Safe 3D drone navigation",
+    "Diffusion predictive control with hard safety constraints, from Isaac Sim to a real Crazyflie.",
+  ],
+  ["Now", now.kicker, now.text],
+  ["Next", next.kicker, next.text],
+]
+
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
+const rise = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 120, damping: 20 },
+  },
+}
+
+// The line fills in as the timeline scrolls through the viewport.
+const Timeline = () => {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 75%", "end 55%"],
+  })
+  const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 28 })
+  return (
+    <div className="about-timeline" ref={ref}>
+      <div className="tl-track" />
+      <motion.div className="tl-fill" style={{ scaleY }} />
+      <ol>
+        {timeline.map(([when, title, text]) => (
+          <motion.li
+            key={when}
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+          >
+            <span className="tl-dot" />
+            <div className="tl-when">{when}</div>
+            <h3 className="tl-title">{title}</h3>
+            <p className="tl-text">{text}</p>
+          </motion.li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
 const About = () => {
   const { about } = data
+  const photoRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: photoRef,
+    offset: ["start end", "end start"],
+  })
+  const photoY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"])
   return (
     <section id="about">
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 320px",
+          gridTemplateColumns: "340px 1fr",
           gap: "4rem",
           alignItems: "start",
           marginBottom: "3rem",
         }}
         className="about-photo-layout"
       >
-        <div>
-          <div className="section-header reveal">
-            <span className="section-num">03. Background</span>
-            <h2 className="section-title">
-              About <em>me</em>
-            </h2>
-          </div>
-          <div className="about-text reveal">
-            {about.paragraphs.map((parts, i) => (
-              <p key={i}>
-                <Parts parts={parts} />
-              </p>
-            ))}
-            <div className="available-badge">
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "var(--accent2)",
-                  display: "inline-block",
-                }}
-              ></span>
-              {about.badge}
-            </div>
-          </div>
-        </div>
-
         <div
           className="reveal reveal-delay-1 about-photo-col"
           style={{ position: "sticky", top: "6rem" }}
@@ -58,8 +95,9 @@ const About = () => {
               position: "relative",
               boxShadow: "var(--shadow)",
             }}
+            ref={photoRef}
           >
-            <img
+            <motion.img
               src={about.photo}
               alt={data.name}
               style={{
@@ -67,6 +105,8 @@ const About = () => {
                 height: "100%",
                 objectFit: "cover",
                 display: "block",
+                y: photoY,
+                scale: 1.2,
               }}
               onError={e => {
                 e.currentTarget.style.display = "none"
@@ -117,27 +157,43 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "1.25rem",
-        }}
-        className="reveal about-cards"
-      >
-        {about.cards.map(card => (
-          <div className="info-card" key={card.header}>
-            <div className="ic-header">{card.header}</div>
-            {card.rows.map(([label, val]) => (
-              <div className="ic-row" key={label}>
-                <span className="ic-label">{label}</span>
-                <span className="ic-val">{val}</span>
-              </div>
-            ))}
+        <div>
+          <div className="section-header reveal">
+            <span className="section-num">03. Background</span>
+            <h2 className="section-title">
+              About <em>me</em>
+            </h2>
           </div>
-        ))}
+          <motion.div
+            className="about-text"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            {about.paragraphs.map((parts, i) => (
+              <motion.p key={i} variants={rise}>
+                <Parts parts={parts} />
+              </motion.p>
+            ))}
+            <div className="available-badge">
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: "var(--accent2)",
+                  display: "inline-block",
+                }}
+              ></span>
+              {about.badge}
+            </div>
+          </motion.div>
+          <div className="about-path reveal">
+            <span className="section-num">My path</span>
+            <Timeline />
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -31,6 +31,19 @@ const Projects = () => {
             className={`pj-card reveal${i === 0 ? " pj-featured" : ""}`}
             key={p.index}
           >
+            {p.images && (
+              <div className="pj-photos">
+                {p.images.map(img => (
+                  <img
+                    key={img.src}
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ))}
+              </div>
+            )}
             {p.video && (
               <div className="pj-media">
                 <video

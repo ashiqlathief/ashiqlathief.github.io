@@ -200,6 +200,38 @@ const data = {
         "Gazebo ground-truth evaluation of tracking error, true gripper distance and planning times",
       ],
     },
+    {
+      index: "04",
+      repo: "https://github.com/Amjad-MA5/robot-app",
+      label: "Hinterland Hack 2026 · Team of 3",
+      title: "Smart Receptionist for the Orionstar GreetingBot Nova",
+      desc: "Built with a team of three for the Terra Robotics challenge at Hinterland Hack 2026: an Android app that turns the Orionstar GreetingBot Nova into a receptionist called Norra. Visitors check in by voice or touch in German or English, the host is notified through a FastAPI backend, and the robot prints a visitor badge and walks the guest to the waiting room.",
+      tags: [
+        "Kotlin",
+        "Jetpack Compose",
+        "Android",
+        "FastAPI",
+        "Python",
+        "MS Graph",
+        "Voice NLU",
+      ],
+      images: [
+        {
+          src: "media/hinterland-stage.jpg",
+          alt: "Presenting the Smart Receptionist to the jury at Hinterland Hack 2026",
+        },
+        {
+          src: "media/hinterland-robot.jpg",
+          alt: "Setting up the Terra Robotics GreetingBot Nova at Hinterland Hack 2026",
+        },
+      ],
+      highlights: [
+        "Check-in by voice or touch in German and English, with automatic language detection and keyword rules as a fallback",
+        "Backend notifies the host through Microsoft 365 or email, then the robot escorts the visitor to the waiting room with its native navigation",
+        "Walk-in, appointment booking from the host's calendar, and a delivery flow with package photo and reminders",
+        "Visitor badge with photo, name, host and QR code printed over IPP, plus an admin visitor log",
+      ],
+    },
   ],
 
   skills: [

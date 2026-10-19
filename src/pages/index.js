@@ -13,9 +13,9 @@ const IndexPage = () => (
   <Layout>
     <Navbar />
     <Hero>
-      <About />
       <Projects />
       <Skills />
+      <About />
       <Contact />
       <Footer />
     </Hero>
@@ -34,13 +34,20 @@ export const Head = () => (
     <meta property="og:image" content={`${data.seo.url}/preview.jpg`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossOrigin="anonymous"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&family=Nunito:wght@600&display=swap"
       rel="stylesheet"
     />
     {data.fonts.adobeKitId && (
-      <link rel="stylesheet" href={`https://use.typekit.net/${data.fonts.adobeKitId}.css`} />
+      <link
+        rel="stylesheet"
+        href={`https://use.typekit.net/${data.fonts.adobeKitId}.css`}
+      />
     )}
   </>
 )

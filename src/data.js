@@ -70,9 +70,9 @@ const data = {
   githubHandle: "ashiqlathief",
 
   nav: [
-    { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
+    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
 

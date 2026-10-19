@@ -20,20 +20,48 @@ const Projects = () => {
   return (
     <section id="projects">
       <div className="section-header reveal">
-        <span className="section-num">02. Selected work</span>
+        <span className="section-num">01. Selected work</span>
         <h2 className="section-title">
           Projects I've <em>built</em>
         </h2>
       </div>
-      <div className="projects-grid">
+      <div className="pj-grid">
         {data.projects.map((p, i) => (
-          <article className="project-card reveal" key={p.index}>
-            <div className="pc-left">
-              <div className="pc-index">{p.index}</div>
-              <div className="pc-label">{p.label}</div>
-              <h3 className="pc-title">{p.title}</h3>
+          <article
+            className={`pj-card reveal${i === 0 ? " pj-featured" : ""}`}
+            key={p.index}
+          >
+            {p.video && (
+              <div className="pj-media">
+                <video
+                  src={p.video}
+                  controls
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${p.title} demo video`}
+                ></video>
+              </div>
+            )}
+            <div className="pj-body">
+              <div className="pj-meta">
+                <span className="pj-index">{p.index}</span>
+                <span className="pc-label">{p.label}</span>
+              </div>
+              <h3 className="pj-title">{p.title}</h3>
               <div className="pc-desc">
                 <Highlight text={p.desc} />
+              </div>
+              <div className="pc-highlights pc-highlights-inline pj-highlights">
+                <Highlights items={p.highlights} />
+              </div>
+              <div className="pc-tags pj-tags">
+                {p.tags.map(t => (
+                  <span className="pc-tag" key={t}>
+                    {t}
+                  </span>
+                ))}
               </div>
               <div className="pc-actions">
                 {p.repo && (
@@ -54,33 +82,6 @@ const Projects = () => {
                 >
                   <ListChecks size={16} aria-hidden="true" /> Key details
                 </button>
-              </div>
-            </div>
-            <div className="pc-right">
-              <div>
-                <div className="pc-tags">
-                  {p.tags.map(t => (
-                    <span className="pc-tag" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                {p.video && (
-                  <div className="pc-media">
-                    <video
-                      src={p.video}
-                      controls
-                      loop
-                      muted
-                      playsInline
-                      preload="metadata"
-                      aria-label={`${p.title} demo video`}
-                    ></video>
-                  </div>
-                )}
-              </div>
-              <div className="pc-highlights pc-highlights-inline">
-                <Highlights items={p.highlights} />
               </div>
             </div>
           </article>

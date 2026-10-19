@@ -29,18 +29,14 @@ const Hero = ({ children }) => (
           <Highlight text={data.hero.bio} />
         </p>
         <div className="hero-actions reveal reveal-delay-3">
-          <a href="#projects" className="btn btn-primary">
-            <svg
-              width="14"
-              height="14"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 3l14 9-14 9V3z" />
-            </svg>
-            View work
+          <a
+            href={`mailto:${data.email}`}
+            className="btn btn-primary hero-hire"
+          >
+            Hire me
+          </a>
+          <a href="#projects" className="btn btn-ghost">
+            See my work
           </a>
           <a
             href={data.linkedin}
@@ -49,9 +45,6 @@ const Hero = ({ children }) => (
             className="btn btn-ghost"
           >
             LinkedIn
-          </a>
-          <a href={`mailto:${data.email}`} className="btn btn-ghost">
-            Email me
           </a>
           <a href={data.cv.file} download className="btn btn-ghost hero-cv">
             {data.cv.label}

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import BackgroundIcons from "./BackgroundIcons"
+import "../styles/tailwind.css"
 import "../styles/main.css"
 
 const Layout = ({ children }) => {

@@ -5,13 +5,21 @@
   "version": "1.0.0",
   "author": "Ashiq Ali Abdul Lathief <ashiq.lathief@gmail.com>",
   "dependencies": {
+    "clsx": "^2.1.1",
     "gatsby": "^5.13.1",
+    "lucide-react": "^1.59.0",
+    "motion": "^14.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
-    "prettier": "^3.1.0"
+    "autoprefixer": "^10.6.1",
+    "gatsby-plugin-postcss": "^6.16.0",
+    "postcss": "^8.5.31",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^3.4.19"
   },
   "scripts": {
     "build": "gatsby build",

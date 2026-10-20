@@ -193,6 +193,7 @@ const data = {
         "C++",
         "Python",
       ],
+      video: "media/dexterity.mp4",
       highlights: [
         "Action-server hand-eye controller with an rqt \"Arm Control\" panel for bootstrapping and starting trackers",
         "6D object pose tracking with M3T and ICG, switchable at runtime",
@@ -215,16 +216,25 @@ const data = {
         "MS Graph",
         "Voice NLU",
       ],
+      // Shown as a staggered 2x2 mosaic together with the video:
+      // video + first image on the top row, the other two below.
       images: [
         {
-          src: "media/hinterland-stage.jpg",
-          alt: "Presenting the Smart Receptionist to the jury at Hinterland Hack 2026",
+          src: "media/norra.jpeg",
+          alt: "Norra, the Terra Robotics GreetingBot Nova, showing the welcome screen at Hinterland Hack 2026",
+          pos: "50% 22%",
         },
         {
           src: "media/hinterland-robot.jpg",
           alt: "Setting up the Terra Robotics GreetingBot Nova at Hinterland Hack 2026",
+          pos: "50% 30%",
+        },
+        {
+          src: "media/hinterland-stage.jpg",
+          alt: "Presenting the Smart Receptionist to the jury at Hinterland Hack 2026",
         },
       ],
+      video: "media/roboapp.mp4",
       highlights: [
         "Check-in by voice or touch in German and English, with automatic language detection and keyword rules as a fallback",
         "Backend notifies the host through Microsoft 365 or email, then the robot escorts the visitor to the waiting room with its native navigation",

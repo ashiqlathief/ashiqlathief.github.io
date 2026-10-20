@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { ArrowUpRight, ListChecks } from "lucide-react"
 import data from "../data"
 import Highlight from "./Highlight"
@@ -12,6 +12,44 @@ const Highlights = ({ items }) =>
       </span>
     </div>
   ))
+
+// Plays muted and looping while on screen, pauses when scrolled away.
+const AutoVideo = ({ src, title }) => {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return undefined
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduce || !("IntersectionObserver" in window)) return undefined
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.play().catch(() => {})
+        } else {
+          el.pause()
+        }
+      },
+      { threshold: 0.35 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      controls
+      loop
+      muted
+      autoPlay
+      playsInline
+      preload="metadata"
+      aria-label={`${title} demo video`}
+    ></video>
+  )
+}
 
 const Projects = () => {
   const [active, setActive] = useState(null)
@@ -31,7 +69,22 @@ const Projects = () => {
             className={`pj-card reveal${i === 0 ? " pj-featured" : ""}`}
             key={p.index}
           >
-            {p.images && (
+            {p.images && p.video && (
+              <div className="pj-mosaic">
+                <AutoVideo src={p.video} title={p.title} />
+                {p.images.map(img => (
+                  <img
+                    key={img.src}
+                    src={img.src}
+                    alt={img.alt}
+                    style={img.pos ? { objectPosition: img.pos } : undefined}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ))}
+              </div>
+            )}
+            {p.images && !p.video && (
               <div className="pj-photos">
                 {p.images.map(img => (
                   <img
@@ -44,17 +97,9 @@ const Projects = () => {
                 ))}
               </div>
             )}
-            {p.video && (
+            {p.video && !p.images && (
               <div className="pj-media">
-                <video
-                  src={p.video}
-                  controls
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  aria-label={`${p.title} demo video`}
-                ></video>
+                <AutoVideo src={p.video} title={p.title} />
               </div>
             )}
             <div className="pj-body">
